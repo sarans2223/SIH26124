@@ -1,0 +1,279 @@
+@import "tailwindcss";
+@custom-variant dark (&:where(.dark, .dark *));
+@source "../index.html";
+@source "../src";
+
+@layer base {
+  :root {
+    --font-sans: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+    --bg-app: #F8FAFC;
+    --bg-surface: #FFFFFF;
+    --border-color: #E2E8F0;
+    --text-primary: #0F172A;
+    --text-muted: #64748B;
+    --primary-blue: #1A73E8;
+
+    /* Flat Severity Colors */
+    --sev-critical: #D93025;
+    --sev-high: #E8710A;
+    --sev-medium: #F9AB00;
+    --sev-low: #188038;
+    --sev-info: #1A73E8;
+  }
+
+  body {
+    font-family: var(--font-sans);
+    background-color: var(--bg-app);
+    color: var(--text-primary);
+    -webkit-font-smoothing: antialiased;
+    margin: 0;
+    padding: 0;
+  }
+
+  /* Inter Tabular Numbers for all numeric metrics and counts */
+  .tabular-nums, .num, [data-num] {
+    font-variant-numeric: tabular-nums;
+  }
+}
+
+/* Neutral Clean Scrollbars */
+::-webkit-scrollbar {
+  width: 5px;
+  height: 5px;
+}
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+::-webkit-scrollbar-thumb {
+  background: #CBD5E1;
+  border-radius: 4px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: #94A3B8;
+}
+
+/* Light & Dark Base Utilities */
+.enterprise-card {
+  background-color: #FFFFFF;
+  border: 1px solid #E2E8F0;
+  border-radius: 12px;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.08);
+}
+
+.dark .enterprise-card {
+  background-color: #1E293B;
+  border: 1px solid #334155;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.3);
+}
+
+/* Leaflet Overrides for Enterprise GIS Look */
+.leaflet-container {
+  width: 100%;
+  height: 100%;
+  background-color: #F1F5F9 !important;
+  font-family: var(--font-sans);
+}
+
+.dark .leaflet-container {
+  background-color: #0F172A !important;
+}
+
+.leaflet-control-zoom {
+  border: 1px solid #E2E8F0 !important;
+  background: #FFFFFF !important;
+  border-radius: 8px !important;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1) !important;
+  overflow: hidden;
+}
+
+.dark .leaflet-control-zoom {
+  border: 1px solid #334155 !important;
+  background: #1E293B !important;
+}
+
+.leaflet-control-zoom a {
+  background-color: transparent !important;
+  color: #475569 !important;
+  border-bottom: 1px solid #E2E8F0 !important;
+  width: 30px !important;
+  height: 30px !important;
+  line-height: 30px !important;
+  font-size: 14px !important;
+}
+
+.dark .leaflet-control-zoom a {
+  color: #CBD5E1 !important;
+  border-bottom: 1px solid #334155 !important;
+}
+
+.leaflet-control-zoom a:hover {
+  background-color: #F8FAFC !important;
+  color: #1A73E8 !important;
+}
+
+.dark .leaflet-control-zoom a:hover {
+  background-color: #334155 !important;
+  color: #38BDF8 !important;
+}
+
+/* Popups: Clean white card, subtle shadow, no neon */
+.leaflet-popup-content-wrapper {
+  background: #FFFFFF !important;
+  color: #0F172A !important;
+  border: 1px solid #E2E8F0 !important;
+  border-radius: 10px !important;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1) !important;
+  padding: 0 !important;
+}
+
+.dark .leaflet-popup-content-wrapper {
+  background: #1E293B !important;
+  color: #F8FAFC !important;
+  border: 1px solid #334155 !important;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.4) !important;
+}
+
+.leaflet-popup-tip {
+  background: #FFFFFF !important;
+  border: 1px solid #E2E8F0;
+}
+
+.dark .leaflet-popup-tip {
+  background: #1E293B !important;
+  border: 1px solid #334155;
+}
+
+.leaflet-popup-content {
+  margin: 0 !important;
+  line-height: 1.4 !important;
+}
+
+/* Unobtrusive Attribution Styling */
+.leaflet-control-attribution {
+  background: rgba(255, 255, 255, 0.88) !important;
+  font-size: 10px !important;
+  color: #64748B !important;
+  padding: 2px 8px !important;
+  border-top-left-radius: 6px !important;
+  border: 1px solid rgba(226, 232, 240, 0.8) !important;
+  border-bottom: none !important;
+  border-right: none !important;
+}
+
+.leaflet-control-attribution a {
+  color: #475569 !important;
+  text-decoration: none;
+}
+
+.leaflet-control-attribution a:hover {
+  text-decoration: underline;
+}
+
+/* Metric Scale Bar (L.control.scale) */
+.leaflet-control-scale-line {
+  border: 2px solid #64748B !important;
+  border-top: none !important;
+  line-height: 1.1 !important;
+  padding: 2px 5px !important;
+  font-size: 10px !important;
+  font-family: var(--font-sans) !important;
+  font-weight: 600 !important;
+  font-variant-numeric: tabular-nums !important;
+  background: rgba(255, 255, 255, 0.88) !important;
+  color: #0F172A !important;
+  box-shadow: 0 1px 3px rgba(0,0,0,0.1) !important;
+  border-radius: 0 0 3px 3px !important;
+}
+
+/* Map Markers Styling */
+/* Small flat marker: 14px circle, solid severity colour, 2px white border, soft shadow. On hover grow to 18px. */
+.gis-defect-marker {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+}
+
+.gis-defect-marker-dot {
+  width: 14px;
+  height: 14px;
+  border-radius: 50%;
+  border: 2px solid #FFFFFF;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.25);
+  transition: transform 0.15s ease, width 0.15s ease, height 0.15s ease;
+}
+
+.gis-defect-marker:hover .gis-defect-marker-dot {
+  transform: scale(1.28); /* Grows to ~18px */
+}
+
+/* Pulsing on Critical only */
+.pulse-critical {
+  animation: critical-pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+}
+
+@keyframes critical-pulse {
+  0%, 100% {
+    box-shadow: 0 0 0 0 rgba(217, 48, 37, 0.5), 0 1px 3px rgba(0, 0, 0, 0.25);
+  }
+  50% {
+    box-shadow: 0 0 0 5px rgba(217, 48, 37, 0), 0 1px 3px rgba(0, 0, 0, 0.25);
+  }
+}
+
+/* Bus Marker: Small white rounded chip with route number and tiny arrow */
+.gis-bus-chip {
+  background: #FFFFFF;
+  border: 1px solid #CBD5E1;
+  border-radius: 6px;
+  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.12);
+  padding: 2px 5px;
+  display: flex;
+  align-items: center;
+  gap: 3px;
+  font-family: var(--font-sans);
+  font-size: 11px;
+  font-weight: 600;
+  color: #0F172A;
+  white-space: nowrap;
+  cursor: pointer;
+  user-select: none;
+  transition: transform 0.15s ease, box-shadow 0.15s ease;
+}
+
+.dark .gis-bus-chip {
+  background: #1E293B;
+  border-color: #475569;
+  color: #F8FAFC;
+  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.3);
+}
+
+.gis-bus-chip:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.16);
+}
+
+/* Cluster Marker: Single neutral circle with count number, colour of the worst severity inside */
+.gis-cluster-circle {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: #FFFFFF;
+  border-radius: 50%;
+  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.18);
+  font-family: var(--font-sans);
+  font-size: 12px;
+  font-weight: 700;
+  font-variant-numeric: tabular-nums;
+  color: #0F172A;
+  transition: transform 0.15s ease;
+}
+
+.dark .gis-cluster-circle {
+  background: #1E293B;
+  color: #F8FAFC;
+}
+
+.gis-cluster-circle:hover {
+  transform: scale(1.08);
+}
